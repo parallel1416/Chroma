@@ -1,11 +1,11 @@
 
 #ifndef CHARACTER_H
 #define CHARACTER_H
+#include "gameobject.h"
 
 
 
-
-class character
+class character: public gameobject
 {
 public:
     character();

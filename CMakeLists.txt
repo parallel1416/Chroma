@@ -24,6 +24,10 @@ set(PROJECT_SOURCES
         gameobject.h gameobject.cpp
         character.h character.cpp
         player.h player.cpp
+        dialogbox.h dialogbox.cpp
+        scene.h scene.cpp
+        mybtn.h mybtn.cpp
+        globalvar.h globalvar.cpp
         ${TS_FILES}
 )
 
