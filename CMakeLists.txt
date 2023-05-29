@@ -28,6 +28,9 @@ set(PROJECT_SOURCES
         scene.h scene.cpp
         mybtn.h mybtn.cpp
         globalvar.h globalvar.cpp
+        map.h map.cpp
+        item.h item.cpp
+        backpack.cpp backpack.h
         ${TS_FILES}
 )
 
