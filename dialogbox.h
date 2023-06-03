@@ -28,6 +28,7 @@ public:
     void loadJson(const QString &fileName); // 加载并解析json文件
     void showContent(); // 显示当前场景的内容
     void updateScene(const QString &option); // 根据选择的选项更新场景
+    void setPixmap(const QPixmap& m);
 
 private:
     QMessageBox *messageBox; // 用于显示内容和选项的消息框

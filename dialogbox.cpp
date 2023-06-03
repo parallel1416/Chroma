@@ -3,6 +3,7 @@
 #include "mybtn.h"
 #include <QFile>
 #include <QJsonArray>
+#include <QJsonObject>
 #include <QPushButton>
 
 DialogBox::DialogBox(QWidget *parent) :
@@ -110,7 +111,7 @@ void DialogBox::showContent()
     // 显示消息框
     messageBox->show();
 }
-
+void DialogBox::setPixmap(const QPixmap& m){}
 void DialogBox::updateScene(const QString &option)
 {
     // 隐藏消息框
@@ -121,7 +122,7 @@ void DialogBox::updateScene(const QString &option)
 
     // 使用QPixmap类加载和设置背景图像
    QPixmap backgroundPixmap(backgroundImage);
-    setPixmap(backgroundPixmap);
+   setPixmap(backgroundPixmap);
 
     // 使用选项作为键从映射中获取backpack内容
    QString backpackContent = backpackMap.value(option);
