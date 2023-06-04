@@ -89,3 +89,6 @@ void Character::setAtk(int value)
 {
     atk = value;
 }
+bool Character::getInteract(){return interact;}
+void Character::setInteract(bool b){interact=b;}
+void Character::setSpeed(int s){speed=s;}

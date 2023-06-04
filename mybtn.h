@@ -12,7 +12,6 @@ class mybtn : public QPushButton, public QGraphicsPixmapItem
     Q_OBJECT
 
 public:
-    mybtn();
     mybtn(std::string s);
     void mouseMoveEvent(QMouseEvent *event) override
     {

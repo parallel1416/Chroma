@@ -3,12 +3,9 @@
 #define MAINWINDOW_H
 
 #include <QWidget>
+#include "scene.h"
+#include "startmenu.h"
 
-
-
-QT_BEGIN_NAMESPACE
-namespace Ui { class mainwindow; }
-QT_END_NAMESPACE
 
 class mainwindow : public QWidget
 
@@ -20,7 +17,8 @@ public:
     ~mainwindow();
 
 private:
-    Ui::mainwindow *ui;
+    scene* activeScene;
+    startmenu* menu;
 };
 
 #endif // MAINWINDOW_H

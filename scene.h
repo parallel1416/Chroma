@@ -3,6 +3,8 @@
 #define SCENE_H
 
 #include "gameobject.h"
+#include "map.h"
+#include "character.h"
 #include <QGraphicsScene>
 #include <QMediaPlayer>
 #include <QWidget>

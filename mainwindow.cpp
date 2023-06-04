@@ -1,19 +1,19 @@
 
 #include "mainwindow.h"
-#include "./ui_mainwindow.h"
-
+#include <QGraphicsView>
+#include <QApplication>
 
 mainwindow::mainwindow(QWidget *parent)
     : QWidget(parent)
-    , ui(new Ui::mainwindow)
 {
-    ui->setupUi(this);
-
+    menu=new startmenu;
+    QGraphicsView view(menu);
+    view.show();
 }
 
 mainwindow::~mainwindow()
 {
-    delete ui;
+
 }
 
 
