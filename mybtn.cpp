@@ -12,8 +12,8 @@ mybtn::mybtn(std::string s)
                   "QPushButton:pressed { background-color: #5A5A5A; }");
 
     // Load sound effect
-    soundClicked.setSource(QUrl::fromLocalFile(":/audio/click.wav"));
-    soundHover.setSource(QUrl::fromLocalFile(":/audio/hover.wav"));
+    soundClicked.setSource(QUrl::fromLocalFile(":/resources/audio/click.wav"));
+    soundHover.setSource(QUrl::fromLocalFile(":/resources/audio/hover.wav"));
     // Connect signals to slots
     connect(this, &QPushButton::clicked, this, &mybtn::playClickedSound);
     connect(this, &QPushButton::pressed, this, &mybtn::animateClick);

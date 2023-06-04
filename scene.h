@@ -1,7 +1,7 @@
 
 #ifndef SCENE_H
 #define SCENE_H
-
+#include <QObject>
 #include "gameobject.h"
 #include "map.h"
 #include "character.h"
@@ -11,6 +11,7 @@
 
 class scene : public QGraphicsScene
 {
+    Q_OBJECT
 public:
     explicit scene(QObject *parent = nullptr);
 
@@ -20,8 +21,8 @@ signals:
 private:
     QGraphicsPixmapItem *background;
 public slots:
-    void updateBackground(scene *scene);
-    void startDialog(gameobject* obj);
+    //void updateBackground(scene *scene);
+    //void initDialog(gameobject* obj);
 };
 
 #endif // SCENE_H
