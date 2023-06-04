@@ -3,23 +3,37 @@
 #define MYBTN_H
 #include <QGraphicsPixmapItem>
 #include <QPushButton>
-#include <QMediaPlayer>
 #include <QWidget>
-#include <QAudioOutput>
+#include <QPropertyAnimation>
+#include <QSoundEffect>
 
-
-class mybtn : public QPushButton
+class mybtn : public QPushButton, public QGraphicsPixmapItem
 {
+    Q_OBJECT
+
 public:
     mybtn();
-    mybtn(QString& s);
-    QMediaPlayer *player;
-    QAudioOutput *audioOutput;
-    void mousePressEvent(QMouseEvent *event);
-    void mouseReleaseEvent(QMouseEvent *event);
-    void HoverEnterEvent(QMouseEvent *event);
+    mybtn(std::string s);
+    void mouseMoveEvent(QMouseEvent *event) override
+    {
+        soundHover.play();
+        animateHoverIn();
+    }
+
+    void animateHoverIn();
+    void animateHoverOut();
 signals:
-    void clicked();
+    void btnClicked();
+
+private slots:
+    void playClickedSound();
+    void animateClick();
+    void animateRelease();
+
+private:
+    QColor normal,hover,press;
+    QSoundEffect soundClicked, soundHover;
 };
+
 
 #endif // MYBTN_H
