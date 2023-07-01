@@ -84,3 +84,5 @@ endif()
 
 find_package(Qt6 REQUIRED COMPONENTS Multimedia)
 target_link_libraries(Chroma PRIVATE Qt6::Multimedia)
+find_package(Qt6 REQUIRED COMPONENTS MultimediaWidgets)
+target_link_libraries(Chroma PRIVATE Qt6::MultimediaWidgets)

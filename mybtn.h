@@ -13,14 +13,8 @@ class mybtn : public QPushButton, public QGraphicsPixmapItem
 
 public:
     mybtn(std::string s);
-    void mouseMoveEvent(QMouseEvent *event) override
-    {
-        soundHover.play();
-        animateHoverIn();
-    }
-
-    void animateHoverIn();
-    void animateHoverOut();
+    void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
 signals:
     void btnClicked();
 

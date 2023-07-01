@@ -20,9 +20,8 @@ mybtn::mybtn(std::string s)
     connect(this, &QPushButton::released, this, &mybtn::animateRelease);
     setText(QString::fromStdString(s));
 }
-
-void mybtn::animateHoverIn()
-{
+void mybtn::hoverEnterEvent(QGraphicsSceneHoverEvent *event){
+    soundHover.play();
     // Animate button color change
     QPropertyAnimation *animation = new QPropertyAnimation(this, "background-color");
     animation->setDuration(200);
@@ -31,7 +30,7 @@ void mybtn::animateHoverIn()
     animation->start(QAbstractAnimation::DeleteWhenStopped);
 }
 
-void mybtn::animateHoverOut()
+void mybtn::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 {
     // Animate button color change
     QPropertyAnimation *animation = new QPropertyAnimation(this, "background-color");
