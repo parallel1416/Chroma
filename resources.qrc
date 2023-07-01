@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/image/background.jpg</file>
+        <file>resources/image/blue_iceman.jpg</file>
+        <file>resources/image/blue_iceman.png</file>
+        <file>resources/image/blue_ninja.jpg</file>
+        <file>resources/image/blue_ninja.png</file>
+        <file>resources/image/red_wolf.jpg</file>
+        <file>resources/image/red_wolf.png</file>
+        <file>resources/image/startmenu.jpg</file>
+        <file>resources/image/startmenu-faded.jpg</file>
+        <file>resources/audio/click.wav</file>
+        <file>resources/audio/hover.wav</file>
+    </qresource>
+</RCC>

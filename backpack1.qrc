@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+        <file>background color/Dark Skies.jpg</file>
+        <file>background color/grey change.jpg</file>
+        <file>background color/grey pure.png</file>
+        <file>background color/happy face.png</file>
+        <file>background color/tool slot sz80.jpg</file>
+        <file>background color/tool slot sz120.jpg</file>
+        <file>color pictures/emoji1.png</file>
+        <file>color pictures/emoji2.png</file>
+        <file>color pictures/emoji3.png</file>
+        <file>color pictures/emoji4.png</file>
+        <file>color pictures/emoji5.png</file>
+        <file>color pictures/emoji6.png</file>
+        <file>background color/back.png</file>
+    </qresource>
+</RCC>

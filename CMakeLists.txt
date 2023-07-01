@@ -31,6 +31,9 @@ set(PROJECT_SOURCES
         map.h map.cpp
         item.h item.cpp
         backpack.cpp backpack.h
+        #bp.h bp.cpp
+        #bp.ui backpack1.qrc
+        resources.qrc
         ${TS_FILES}
 )
 
