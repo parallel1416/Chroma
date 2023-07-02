@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>resources/image/background.jpg</file>
         <file>resources/image/blue_iceman.jpg</file>
         <file>resources/image/blue_iceman.png</file>
         <file>resources/image/blue_ninja.jpg</file>
@@ -11,5 +10,14 @@
         <file>resources/image/startmenu-faded.jpg</file>
         <file>resources/audio/click.wav</file>
         <file>resources/audio/hover.wav</file>
+        <file>resources/image/blue_1.png</file>
+        <file>resources/image/city1.jpg</file>
+        <file>resources/image/cyan_1.png</file>
+        <file>resources/image/green_1.png</file>
+        <file>resources/image/magenta_1.png</file>
+        <file>resources/image/world1.jpg</file>
+        <file>resources/image/yellow_1.png</file>
+        <file>resources/animation/1.mp4</file>
+        <file>resources/image/pause.jpg</file>
     </qresource>
 </RCC>

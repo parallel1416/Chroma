@@ -27,16 +27,17 @@ public:
     scene* activeScene;
     startmenu* menu;
     QApplication* app;
-    QGraphicsView* view;
+    QGraphicsView* view, gameView, settingsView, pauseView, bkpkView;
     QMediaPlayer* player;
     void initScene();
 
-public slots:
 
-signals:
+public slots:
     void newScene();
     void contScene();
     void nextScene();
+signals:
+    void playScene();
 };
 
 #endif // MAINWINDOW_H

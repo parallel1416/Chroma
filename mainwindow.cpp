@@ -2,6 +2,8 @@
 #include "mainwindow.h"
 #include <QGraphicsView>
 #include <QApplication>
+#include <string>
+#include <QString>
 
 mainwindow::mainwindow(QApplication *a, QWidget *parent)
     : QWidget(parent)
@@ -12,9 +14,9 @@ mainwindow::mainwindow(QApplication *a, QWidget *parent)
     view=new QGraphicsView(menu);
     view->setFixedSize(800,600);
     view->show();
-    connect(activeScene, &scene::endofScene, this, &mainwindow::nextScene);
+
     connect(menu->start, &mybtn::btnClicked, this, &mainwindow::newScene);
-    connect(menu->cont, &mybtn::btnClicked, this, &mainwindow::contScene);
+    //connect(menu->cont, &mybtn::btnClicked, this, &mainwindow::contScene);
     connect(menu->exit, &mybtn::btnClicked, a, &QApplication::quit);
 
 }
@@ -24,22 +26,27 @@ void mainwindow::newScene(){
 }
 void mainwindow::initScene(){
     player = new QMediaPlayer(this);
-    QGraphicsVideoItem *item = new QGraphicsVideoItem;
-    player->setVideoOutput(item);
-    view->scene()->addItem(item);
+    QGraphicsVideoItem *Vitem = new QGraphicsVideoItem;
+    player->setVideoOutput(Vitem);
+    view->scene()->addItem(Vitem);
     view->show();
-    switch (curScene) {
-    case 1:
-        player->setSource(QUrl(":/resources/animation/1.mp4"));
-        player->play();
-        break;
-    default:
-        break;
-    }
+    activeScene=new scene(curScene);
+    connect(activeScene, &scene::endofScene, this, &mainwindow::nextScene);
+    connect(this, &mainwindow::playScene, activeScene, &scene::start);
+    std::string s=":/resources/animation/"+std::to_string(curScene)+std::string(".mp4");
+    player->setSource(QUrl(QString::fromStdString(s)));
+    player->play();
+    view->hide();
+    emit playScene();
+    activeScene->show();
 }
 void mainwindow::nextScene(){
     if (curScene<5) curScene++;
+    else view->setScene(menu);
     initScene();
+}
+void mainwindow::contScene(){
+
 }
 mainwindow::~mainwindow()
 {

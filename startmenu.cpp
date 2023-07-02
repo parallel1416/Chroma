@@ -5,26 +5,23 @@
 startmenu::startmenu()
 {
     QPixmap bkgrd(":/resources/image/startmenu.jpg");
-    //background=new QGraphicsPixmapItem(bkgrd);
-    //background->setPos(50,100);
-    //addItem(background);
     addPixmap(bkgrd);
     start=new mybtn("NEW GAME");
     start->setFixedSize(btnSize);
-    start->move(50,300);
+    start->move(350,200);
     addWidget(start);
     settings=new mybtn("SETTINGS");
     settings->setFixedSize(btnSize);
-    settings->move(50,400);
+    settings->move(350,300);
     addWidget(settings);
     exit=new mybtn("EXIT");
     exit->setFixedSize(btnSize);
-    exit->move(50,500);
+    exit->move(350,400);
     addWidget(exit);
     if (prevScene){
         cont=new mybtn("CONTINUE");
         cont->setFixedSize(btnSize);
-        cont->move(50,200);
+        cont->move(350,200);
         addWidget(cont);
     }
 }

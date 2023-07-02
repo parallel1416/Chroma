@@ -13,6 +13,7 @@ class mybtn : public QPushButton, public QGraphicsPixmapItem
 
 public:
     mybtn(std::string s);
+    mybtn(QPushButton* b);
     void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
     void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
 signals:
