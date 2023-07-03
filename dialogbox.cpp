@@ -1,8 +1,8 @@
-
 #include "dialogbox.h"
 #include "mybtn.h"
 #include <QFile>
 #include <QJsonArray>
+#include <QJsonObject>
 #include <QPushButton>
 
 DialogBox::DialogBox(QWidget *parent) :
@@ -10,7 +10,9 @@ DialogBox::DialogBox(QWidget *parent) :
     messageBox(new QMessageBox(this)),
     leftCharacter(new QLabel(this)),
     rightCharacter(new QLabel(this)),
-    signalMapper(new QSignalMapper(this))
+    signalMapper(new QSignalMapper(this)),
+    timer(new QTimer(this)), // 新增一个QTimer对象
+    textBuffer("") // 新增一个QString对象
 {
     // 设置对话框的大小和标题
     resize(800, 600);
@@ -27,6 +29,9 @@ DialogBox::DialogBox(QWidget *parent) :
 
     // 连接信号映射器到一个槽函数
     connect(signalMapper, SIGNAL(mapped(QString)), this, SLOT(updateScene(QString)));
+
+    // 连接QTimer对象的timeout信号到一个新的槽函数
+    connect(timer, SIGNAL(timeout()), this, SLOT(updateText()));
 }
 
 DialogBox::~DialogBox()
@@ -63,8 +68,15 @@ void DialogBox::showContent()
     QString speaker = scene.value("speaker").toString();
     QString text = scene.value("text").toString();
 
-    // 使用说话者和文本设置消息框的文本
-    messageBox->setText(QString("<b>%1</b>: %2").arg(speaker).arg(text));
+    // 初始化QString对象为文本内容
+    textBuffer = text;
+
+    // 使用说话者设置消息框的文本，但不显示文本内容
+    messageBox->setText(QString("<b>%1</b>: ").arg(speaker));
+
+    // 设置QTimer对象的间隔为100毫秒，并启动它
+    timer->setInterval(100);
+    timer->start();
 
     // 从场景对象中获取选项数组
     QJsonArray options = scene.value("options").toArray();
@@ -110,27 +122,48 @@ void DialogBox::showContent()
     // 显示消息框
     messageBox->show();
 }
-
+void DialogBox::setPixmap(const QPixmap& m){}
 void DialogBox::updateScene(const QString &option)
 {
     // 隐藏消息框
     messageBox->hide();
 
+    // 停止QTimer对象
+    timer->stop();
+
     // 使用选项作为键从映射中获取背景图像文件名
     QString backgroundImage = backgroundMap.value(option);
 
     // 使用QPixmap类加载和设置背景图像
-   QPixmap backgroundPixmap(backgroundImage);
+    QPixmap backgroundPixmap(backgroundImage);
     setPixmap(backgroundPixmap);
 
     // 使用选项作为键从映射中获取backpack内容
-   QString backpackContent = backpackMap.value(option);
+    QString backpackContent = backpackMap.value(option);
 
     // 在这里对backpack内容做一些操作
 
     // 使用选项作为文件名加载和解析一个新的json文件
-   loadJson(option);
+    loadJson(option);
 
     // 使用新的json数据显示一个新的内容
-   showContent();
+    showContent();
+}
+
+// 定义一个新的槽函数，用来更新消息框的文本
+void DialogBox::updateText()
+{
+    // 如果QString对象不为空，说明还有文字没有显示完
+    if (!textBuffer.isEmpty()) {
+        // 从QString对象中取出第一个字符，并将其追加到消息框的文本中
+        QChar ch = textBuffer.at(0);
+        messageBox->setText(messageBox->text() + ch);
+
+        // 从QString对象中移除第一个字符
+        textBuffer.remove(0, 1);
+    }
+    else {
+        // 如果QString对象为空，说明文字已经显示完，停止QTimer对象
+        timer->stop();
+    }
 }

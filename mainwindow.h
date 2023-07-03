@@ -3,9 +3,13 @@
 #define MAINWINDOW_H
 
 #include <QWidget>
-
-
-
+#include "scene.h"
+#include "startmenu.h"
+#include <QStackedLayout>
+#include <QMediaPlayer>
+#include <QAudioOutput>
+#include <QGraphicsVideoItem>
+#include "./ui_mainwindow.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class mainwindow; }
 QT_END_NAMESPACE
@@ -16,11 +20,24 @@ class mainwindow : public QWidget
     Q_OBJECT
 
 public:
-    mainwindow(QWidget *parent = nullptr);
+    mainwindow(QApplication* a, QWidget *parent = nullptr);
     ~mainwindow();
 
-private:
     Ui::mainwindow *ui;
+    scene* activeScene;
+    startmenu* menu;
+    QApplication* app;
+    QGraphicsView* view, gameView, settingsView, pauseView, bkpkView;
+    QMediaPlayer* player;
+    void initScene();
+
+
+public slots:
+    void newScene();
+    void contScene();
+    void nextScene();
+signals:
+    void playScene();
 };
 
 #endif // MAINWINDOW_H

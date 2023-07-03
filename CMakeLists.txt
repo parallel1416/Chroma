@@ -21,9 +21,7 @@ set(PROJECT_SOURCES
         mainwindow.ui
         startmenu.h
         startmenu.cpp
-        gameobject.h gameobject.cpp
         character.h character.cpp
-        player.h player.cpp
         dialogbox.h dialogbox.cpp
         scene.h scene.cpp
         mybtn.h mybtn.cpp
@@ -31,6 +29,9 @@ set(PROJECT_SOURCES
         map.h map.cpp
         item.h item.cpp
         backpack.cpp backpack.h
+        #bp.h bp.cpp
+        #bp.ui backpack1.qrc
+        resources.qrc
         ${TS_FILES}
 )
 
@@ -81,3 +82,5 @@ endif()
 
 find_package(Qt6 REQUIRED COMPONENTS Multimedia)
 target_link_libraries(Chroma PRIVATE Qt6::Multimedia)
+find_package(Qt6 REQUIRED COMPONENTS MultimediaWidgets)
+target_link_libraries(Chroma PRIVATE Qt6::MultimediaWidgets)

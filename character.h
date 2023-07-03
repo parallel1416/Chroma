@@ -1,6 +1,7 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
+
 #include <QGraphicsItem>
 #include <QPainter>
 #include <QKeyEvent>
@@ -21,9 +22,12 @@ public:
 
     int getAtk() const;
     void setAtk(int value);
-
     bool getInteract();
     void setInteract(bool b);
+    void setSpeed(int s);
+private:
+    // 生命值
+    int hp;
 
     void setSpeed(int s);
 
@@ -36,5 +40,6 @@ private:
     QSoundEffect *sound; // 用于存储音效对象
     QPropertyAnimation *animation; // 用于存储动画对象
 };
+
 
 #endif // CHARACTER_H

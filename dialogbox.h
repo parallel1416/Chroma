@@ -1,21 +1,12 @@
-
 #ifndef DIALOGBOX_H
 #define DIALOGBOX_H
 
-#include <QLabel>
-#include <QGraphicsItem>
-#include <QPushButton>
-#include <QGraphicsPixmapItem>
-#include <QObject>
-#include <QWidget>
-#include "mybtn.h"
 #include <QDialog>
-#include <QMessageBox>
-#include <QJsonDocument>
 #include <QLabel>
-#include <QPixmap>
+#include <QMessageBox>
 #include <QSignalMapper>
-#include <QMap>
+#include <QTimer>
+#include <QJsonDocument>
 
 class DialogBox : public QDialog
 {
@@ -25,18 +16,32 @@ public:
     explicit DialogBox(QWidget *parent = nullptr);
     ~DialogBox();
 
-    void loadJson(const QString &fileName); // 加载并解析json文件
-    void showContent(); // 显示当前场景的内容
-    void updateScene(const QString &option); // 根据选择的选项更新场景
+    // 加载和解析一个json文件
+    void loadJson(const QString &fileName);
+
+    // 显示一个内容
+    void showContent();
+
+    // 设置背景图像
+    void setPixmap(const QPixmap& m);
+
+private slots:
+    // 更新场景
+    void updateScene(const QString &option);
+
+    // 更新文本
+    void updateText();
 
 private:
-    QMessageBox *messageBox; // 用于显示内容和选项的消息框
-    QLabel *leftCharacter; // 用于显示左边角色立绘的标签
-    QLabel *rightCharacter; // 用于显示右边角色立绘的标签
-    QJsonDocument jsonDoc; // 用于存储解析后的数据的json文档
-    QSignalMapper *signalMapper; // 用于将按钮的信号映射到不同的槽函数的信号映射器
-    QMap<QString, QString> backgroundMap; // 用于存储每个选项对应的背景图像文件名的映射
-    QMap<QString, QString> backpackMap; // 用于存储每个选项对应的backpack内容的映射
+    QMessageBox *messageBox; // 消息框对象
+    QLabel *leftCharacter; // 左边角色标签对象
+    QLabel *rightCharacter; // 右边角色标签对象
+    QSignalMapper *signalMapper; // 信号映射器对象
+    QTimer *timer; // 定时器对象
+    QString textBuffer; // 文本缓冲区对象
+    QJsonDocument jsonDoc; // json文档对象
+    QMap<QString, QString> backgroundMap; // 背景图像映射对象
+    QMap<QString, QString> backpackMap; // backpack内容映射对象
 };
 
 #endif // DIALOGBOX_H

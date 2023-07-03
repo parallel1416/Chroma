@@ -2,6 +2,7 @@
 
 // 构造函数，初始化属性
 Character::Character(int hp, int atk, int x, int y)
+
 {
     this->hp = hp;
     this->atk = atk;
