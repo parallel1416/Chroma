@@ -1,8 +1,8 @@
-
 #include "character.h"
 
 // 构造函数，初始化属性
 Character::Character(int hp, int atk, int x, int y)
+
 {
     this->hp = hp;
     this->atk = atk;
@@ -10,9 +10,18 @@ Character::Character(int hp, int atk, int x, int y)
     this->interact = false;
     // 设置初始位置
     setPos(x, y);
+
+    // QSoundEffect对象，设置要播放的音频文件的源和音量
+    sound = new QSoundEffect();
+    sound->setSource(QUrl::fromLocalFile("walk.wav"));
+    sound->setVolume(0.5f);
+
+    // QPropertyAnimation对象，指定要动画的对象和属性，设置动画的持续时间为0.5秒
+    animation = new QPropertyAnimation(this, "pos");
+    animation->setDuration(500);
 }
 
-// 重写绘图函数
+// 绘图函数
 void Character::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option);
@@ -23,18 +32,18 @@ void Character::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     painter->drawEllipse(-10, -10, 20, 20);
 }
 
-// 重写边界函数
+// 边界函数
 QRectF Character::boundingRect() const
 {
     return QRectF(-10, -10, 20, 20);
 }
 
-// 重写碰撞检测函数
+// 碰撞检测函数
 bool Character::collidesWithItem(const QGraphicsItem *other, Qt::ItemSelectionMode mode) const
 {
     Q_UNUSED(mode);
 
-    // 简单地判断两个圆形的距离是否小于半径之和
+    // 判断两个圆形的距离是否小于半径之和
     qreal dx = other->x() - x();
     qreal dy = other->y() - y();
     qreal distance = qSqrt(dx * dx + dy * dy);
@@ -42,7 +51,7 @@ bool Character::collidesWithItem(const QGraphicsItem *other, Qt::ItemSelectionMo
     return distance < 20;
 }
 
-// 重写按键事件处理函数
+// 按键事件处理函数
 void Character::keyPressEvent(QKeyEvent *event)
 {
 
@@ -50,13 +59,27 @@ void Character::keyPressEvent(QKeyEvent *event)
     case Qt::Key_Left:
         // 向左移动，注意边界检查
         if (x() > -250) {
-            moveBy(-speed, 0);
+            // 设置动画的起始值为当前位置
+            animation->setStartValue(pos());
+            // 设置动画的结束值为左移speed个单位后的位置
+            animation->setEndValue(pos() + QPoint(-speed, 0));
+            // 开始动画
+            animation->start();
+            // 播放音效
+            sound->play();
         }
         break;
     case Qt::Key_Right:
         // 向右移动，注意边界检查
         if (x() < 250) {
-            moveBy(speed, 0);
+            // 设置动画的起始值为当前位置
+            animation->setStartValue(pos());
+            // 设置动画的结束值为右移speed个单位后的位置
+            animation->setEndValue(pos() + QPoint(speed, 0));
+            // 开始动画
+            animation->start();
+            // 播放音效
+            sound->play();
         }
         break;
     case Qt::Key_Space:
