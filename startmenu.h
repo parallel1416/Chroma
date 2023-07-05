@@ -8,8 +8,9 @@
 class startmenu: public QGraphicsScene
 {
 public:
-    startmenu();
+    startmenu(QString& imagePath);
     mybtn *start, *cont, *settings, *exit;
+    void checkCont();
 private:
     QGraphicsPixmapItem *background;
 };

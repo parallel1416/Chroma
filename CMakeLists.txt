@@ -32,8 +32,16 @@ set(PROJECT_SOURCES
         #bp.h bp.cpp
         #bp.ui backpack1.qrc
         resources.qrc
+        settings.h settings.cpp
         ${TS_FILES}
 )
+
+set(UI_FILES
+    bp.ui
+)
+
+qt6_wrap_ui(UI_HEADERS ${UI_FILES})
+
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Chroma

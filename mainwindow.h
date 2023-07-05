@@ -30,12 +30,13 @@ public:
     QGraphicsView* view, gameView, settingsView, pauseView, bkpkView;
     QMediaPlayer* player;
     void initScene();
-
+    QAudioOutput* bgm;
 
 public slots:
     void newScene();
     void contScene();
     void nextScene();
+    void to_menu();
 signals:
     void playScene();
 };

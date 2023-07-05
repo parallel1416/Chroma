@@ -10,14 +10,23 @@
         <file>resources/image/startmenu-faded.jpg</file>
         <file>resources/audio/click.wav</file>
         <file>resources/audio/hover.wav</file>
-        <file>resources/image/blue_1.png</file>
         <file>resources/image/city1.jpg</file>
-        <file>resources/image/cyan_1.png</file>
-        <file>resources/image/green_1.png</file>
-        <file>resources/image/magenta_1.png</file>
         <file>resources/image/world1.jpg</file>
-        <file>resources/image/yellow_1.png</file>
         <file>resources/animation/1.mp4</file>
         <file>resources/image/pause.jpg</file>
+        <file>resources/audio/menu.mp3</file>
+        <file>resources/image/back.png</file>
+        <file>resources/image/color0.png</file>
+        <file>resources/image/color1.png</file>
+        <file>resources/image/color2.png</file>
+        <file>resources/image/color3.png</file>
+        <file>resources/image/color4.png</file>
+        <file>resources/image/color5.png</file>
+        <file>resources/image/color6.png</file>
+        <file>resources/image/hero_l1.png</file>
+        <file>resources/image/hero_r1.png</file>
+        <file>resources/image/color7.png</file>
+        <file>resources/image/color8.png</file>
+        <file>resources/image/color9.png</file>
     </qresource>
 </RCC>
