@@ -2,18 +2,18 @@
 #ifndef GLOBALVAR_H
 #define GLOBALVAR_H
 #include <qsize.h>
-#include "item.h"
 extern int bgmSound, toolSound, storySound;
 extern int curScene, prevScene;
 extern int colorStatus[5];
-extern Item* items[6];
-extern int use_color;
 extern QSize btnSize, boxSize, picSize;
 
 class globalvar
 {
 public:
     globalvar();
+    void setBgmSound(int value); // 设置bgmSound的值
+    void setToolSound(int value); // 设置toolSound的值
+    void setStorySound(int value); // 设置storySound的值
 };
 
 #endif // GLOBALVAR_H
