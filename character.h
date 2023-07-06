@@ -1,21 +1,25 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
-
-#include <QGraphicsItem>
+#include <QObject>
+#include <QGraphicsPixmapItem>
 #include <QPainter>
 #include <QKeyEvent>
 #include <QSoundEffect>
 #include <QPropertyAnimation>
+#include <QGraphicsItemAnimation>
+#include <QTimeLine>
 
-class Character : public QGraphicsItem
+class Character : public QObject, public QGraphicsPixmapItem
 {
+    Q_OBJECT
+
 public:
-    Character(int hp, int atk, int x, int y);
+    Character(int speed, int dir, int x, QString& name);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     QRectF boundingRect() const override;
     bool collidesWithItem(const QGraphicsItem *other, Qt::ItemSelectionMode mode) const override;
-    void keyPressEvent(QKeyEvent *event) override;
+    virtual void keyPressEvent(QKeyEvent *event) override;
 
     int getHp() const;
     void setHp(int value);
@@ -25,20 +29,18 @@ public:
     bool getInteract();
     void setInteract(bool b);
     void setSpeed(int s);
-private:
-    // 生命值
-    int hp;
-
-    void setSpeed(int s);
 
 private:
-    int hp; // 生命值
-    int atk; // 攻击力
-    int speed; // 移动速度
+    int hp=100; // 生命值
+    int atk=100; // 攻击力
+    int speed=0; // 移动速度
+    int dir=0;
     bool interact; // 交互标志
 
+    QPixmap pic;
     QSoundEffect *sound; // 用于存储音效对象
-    QPropertyAnimation *animation; // 用于存储动画对象
+    QGraphicsItemAnimation *animation; // 用于存储动画对象
+    QTimeLine *timeline; // 用于存储时间线对象
 };
 
 

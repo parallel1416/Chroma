@@ -2,10 +2,12 @@
 #include "startmenu.h"
 #include "qgraphicsitem.h"
 
-startmenu::startmenu()
+startmenu::startmenu(QString& imagePath)
 {
-    QPixmap bkgrd(":/resources/image/startmenu.jpg");
-    addPixmap(bkgrd);
+    setSceneRect(0, 0, 800, 600);
+    setBackgroundBrush(Qt::black);
+    background = new QGraphicsPixmapItem(QPixmap(imagePath));
+    addItem(background);
     start=new mybtn("NEW GAME");
     start->setFixedSize(btnSize);
     start->move(350,200);
@@ -18,6 +20,9 @@ startmenu::startmenu()
     exit->setFixedSize(btnSize);
     exit->move(350,400);
     addWidget(exit);
+}
+
+void startmenu::checkCont(){
     if (prevScene){
         cont=new mybtn("CONTINUE");
         cont->setFixedSize(btnSize);
@@ -25,4 +30,3 @@ startmenu::startmenu()
         addWidget(cont);
     }
 }
-

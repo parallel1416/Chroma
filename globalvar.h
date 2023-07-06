@@ -5,7 +5,7 @@
 extern int bgmSound, toolSound, storySound;
 extern int curScene, prevScene;
 extern int colorStatus[5];
-extern QSize btnSize, boxSize;
+extern QSize btnSize, boxSize, picSize;
 
 class globalvar
 {

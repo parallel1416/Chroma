@@ -39,6 +39,27 @@ mybtn::mybtn(QPushButton* b)
     connect(this, &QPushButton::released, this, &mybtn::animateRelease);
     setText(b->text());
 }
+mybtn::mybtn(QString& s){
+    pic=QPixmap(":/resources/image/"+s+".png");
+    setPixmap(pic);
+    soundClicked.setSource(QUrl::fromLocalFile(":/resources/audio/click.wav"));
+    soundHover.setSource(QUrl::fromLocalFile(":/resources/audio/hover.wav"));
+    // Connect signals to slots
+    connect(this, &QPushButton::clicked, this, &mybtn::playClickedSound);
+    connect(this, &QPushButton::pressed, this, &mybtn::animateClick);
+    connect(this, &QPushButton::released, this, &mybtn::animateRelease);
+}
+
+QColor mybtn::background_color()const{
+    return my_background_color;
+}
+
+void mybtn::setBackground_color(const QColor &color)
+{
+    my_background_color=color;
+    setStyleSheet("background-color: my_background_color");
+}
+
 void mybtn::hoverEnterEvent(QGraphicsSceneHoverEvent *event){
     soundHover.play();
     // Animate button color change
