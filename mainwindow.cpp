@@ -26,6 +26,9 @@ mainwindow::mainwindow(QApplication *a, QWidget *parent)
     player->play();
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setting=new Setting(menu);
+    connect(menu->settings, &mybtn::btnClicked, this, &mainwindow::to_setting);
+    connect(setting, &Setting::backToMenu, this, &mainwindow::to_menu);
 }
 void mainwindow::newScene(){
     curScene=1;
@@ -71,6 +74,9 @@ void mainwindow::to_menu(){
     view->setScene(menu);
     activeScene->hide();
     view->show();
+}
+void mainwindow::to_setting(){
+    view->setScene(setting);
 }
 mainwindow::~mainwindow()
 {

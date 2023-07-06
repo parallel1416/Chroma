@@ -25,7 +25,7 @@ Backpack::Backpack()
     connect(back, &mybtn::btnClicked, this, &Backpack::to_game);
     use=new mybtn("USE");
     use->setFixedSize(btnSize);
-    use->move(500,450);
+    use->move(550,450);
     addWidget(use);
     name=new QLabel();
     name->move(400,0);

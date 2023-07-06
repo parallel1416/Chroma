@@ -14,14 +14,14 @@ scene::scene(int num, QObject* parent){
     ensureVisible(bkpk);
     backpack=new Backpack();
     connect(backpack, &Backpack::to_game, this, &scene::cont);
-    QString s="hero";
-    Character* H=new Character(100,100,100, s);
+    QString s="hero_r1";
+    Character* H=new Character(10,s);
     switch (num) {
     case 1:
         map[0]=new Map(":/resources/image/world1.jpg",800,600);
         map[1]=new Map(":/resources/image/city1.jpg",800,600);
         map[2]=new Map(":/resources/image/mono1.jpg",800,600);
-        map[0]->setCharacter(H,0);
+        map[0]->setCharacter(H,100);
         map[0]->addTeleportPoint(800, map[1]);
         map[0]->addInteractionPoint(750, "Enter");
         for (int i = 0; i < 5; ++i) {
@@ -40,10 +40,12 @@ scene::scene(int num, QObject* parent){
     s=QString(":/resources/image/pause.jpg");
     pauseMenu=new startmenu(s);
     pauseMenu->start->setText("CONTINUE");
-    setScene(pauseMenu);
     pauseMenu->exit->setText("EXIT");
     connect(pauseMenu->start, &mybtn::btnClicked, this, &scene::cont);
     connect(pauseMenu->exit, &mybtn::btnClicked, this, &scene::to_menu);
+    setting=new Setting(pauseMenu);
+    connect(setting, &Setting::backToMenu, this, &scene::paused);
+    connect(pauseMenu->settings, &mybtn::btnClicked, this, &scene::to_setting);
 }
 
 void scene::start(){
@@ -61,4 +63,8 @@ void scene::paused(){
 void scene::to_bkpk(){
     backpack->showItems();
     setScene(backpack);
+}
+
+void scene::to_setting(){
+    setScene(setting);
 }

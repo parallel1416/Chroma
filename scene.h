@@ -5,6 +5,7 @@
 #include "map.h"
 #include "mybtn.h"
 #include "qgraphicsview.h"
+#include "setting.h"
 #include "startmenu.h"
 #include "backpack.h"
 #include <QGraphicsScene>
@@ -22,6 +23,7 @@ public:
     mybtn* bkpk;
     QGraphicsScene* activeMap;
     Backpack* backpack;
+    Setting* setting;
 signals:
     void endofScene();
     void to_menu();
@@ -33,6 +35,7 @@ public slots:
     void paused();
     void cont();
     void to_bkpk();
+    void to_setting();
 };
 
 #endif // SCENE_H

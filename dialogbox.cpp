@@ -16,7 +16,7 @@ DialogBox::DialogBox(QWidget *parent) :
 {
     // 设置对话框的大小和标题
     resize(800, 600);
-    setWindowTitle("Dialog Box Example");
+    setWindowTitle("Dialog");
 
     // 设置消息框的属性
     messageBox->setWindowTitle("Content");

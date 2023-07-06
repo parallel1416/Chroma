@@ -26,7 +26,7 @@ void startmenu::checkCont(){
     if (prevScene){
         cont=new mybtn("CONTINUE");
         cont->setFixedSize(btnSize);
-        cont->move(350,200);
+        cont->move(350,100);
         addWidget(cont);
     }
 }

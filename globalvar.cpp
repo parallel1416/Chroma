@@ -10,19 +10,19 @@ globalvar::globalvar()
 {
 
 }
-void globalVar::setBgmSound(int value)
+void globalvar::setBgmSound(int value)
 {
     // 修改bgmSound的值
     bgmSound = value;
 }
 
-void globalVar::setToolSound(int value)
+void globalvar::setToolSound(int value)
 {
     // 修改toolSound的值
     toolSound = value;
 }
 
-void globalVar::setStorySound(int value)
+void globalvar::setStorySound(int value)
 {
     // 修改storySound的值
     storySound = value;

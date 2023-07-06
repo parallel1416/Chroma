@@ -32,7 +32,7 @@ set(PROJECT_SOURCES
         #bp.h bp.cpp
         #bp.ui backpack1.qrc
         resources.qrc
-        settings.h settings.cpp
+        setting.h setting.cpp
         ${TS_FILES}
 )
 

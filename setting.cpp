@@ -8,14 +8,16 @@ Setting::Setting(QGraphicsScene *backScene, QObject *parent) : QGraphicsScene(pa
     // 创建标题，参数按需修改
     title = new QGraphicsTextItem("Setting");
     title->setDefaultTextColor(Qt::white);
-    title->setFont(QFont("Arial", 36));
-    title->setPos(300, 100);
+    title->setFont(QFont("Microsoft YaHei UI", 36));
+    title->setPos(250, 50);
     addItem(title);
 
     // 创建返回按键
-    backButton = new QGraphicsPixmapItem(QPixmap("back.png"));
-    backButton->setPos(300, 300);
-    addItem(backButton);
+    backButton = new mybtn("BACK");
+    backButton->setPos(350, 500);
+    backButton->setFixedSize(btnSize);
+    connect(backButton,&mybtn::btnClicked, this, &Setting::to_menu);
+    addWidget(backButton);
 
     // 创建背景音乐音量滑动条
     bgmSlider = new QSlider(Qt::Horizontal);
@@ -42,11 +44,6 @@ Setting::Setting(QGraphicsScene *backScene, QObject *parent) : QGraphicsScene(pa
     addWidget(storySlider);
 }
 
-void Setting::mousePressEvent(QGraphicsSceneMouseEvent *event)
-{
-    // 如果点击了返回按键，发送一个信号，返回到主菜单
-    if (backButton->contains(event->scenePos()))
-    {
-        emit backToMenu(backScene);
-    }
+void Setting::to_menu(){
+    emit backToMenu();
 }

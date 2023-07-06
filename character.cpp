@@ -1,20 +1,18 @@
 #include "character.h"
+#include "globalvar.h"
 
 // 构造函数，初始化属性
-Character::Character(int speed, int dir, int x, QString& name)
+Character::Character(int speed, QString& name)
 
 {
     this->speed = speed;
-    this->dir=dir;
     this->interact = false;
-    // 设置初始位置
-    setPos(x, 400);
     pic=QPixmap(":/resources/image/"+name+".png");
     setPixmap(pic);
     // QSoundEffect对象，设置要播放的音频文件的源和音量
     sound = new QSoundEffect();
     sound->setSource(QUrl(":/resources/audio/walk.wav"));
-    sound->setVolume(0.5f);
+    sound->setVolume(storySound);
 
     // QGraphicsItemAnimation对象，指定要动画的对象和时间线，设置时间线的持续时间为0.5秒
     animation = new QGraphicsItemAnimation();
@@ -30,8 +28,8 @@ void Character::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     Q_UNUSED(widget);
 
     // 绘制一个简单的圆形代表角色
-    painter->setBrush(Qt::blue);
-    painter->drawEllipse(-10, -10, 20, 20);
+    //painter->setBrush(Qt::blue);
+    //painter->drawEllipse(-10, -10, 20, 20);
 }
 
 // 边界函数
@@ -61,31 +59,15 @@ void Character::keyPressEvent(QKeyEvent *event)
     switch (event->key()) {
     case Qt::Key_Left:
         // 向左移动，注意边界检查
-        if (x() > -250) {
-            // 清除动画的所有关键帧
-            animation->clear();
-            // 设置动画的起始值为当前位置
-            animation->setPosAt(0, pos());
-            // 设置动画的结束值为左移speed个单位后的位置
-            animation->setPosAt(1, pos() + QPoint(-speed, 0));
-            // 开始时间线
-            timeline->start();
-            // 播放音效
+        if (x() > 0) {
+            setPos(x()-speed,y());
             sound->play();
         }
         break;
     case Qt::Key_Right:
         // 向右移动，注意边界检查
-        if (x() < 250) {
-            // 清除动画的所有关键帧
-            animation->clear();
-            // 设置动画的起始值为当前位置
-            animation->setPosAt(0, pos());
-            // 设置动画的结束值为右移speed个单位后的位置
-            animation->setPosAt(1, pos() + QPoint(speed, 0));
-            // 开始时间线
-            timeline->start();
-            // 播放音效
+        if (x() < 800) {
+            setPos(x()+speed,y());
             sound->play();
         }
         break;

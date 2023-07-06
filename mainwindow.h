@@ -31,12 +31,14 @@ public:
     QMediaPlayer* player;
     void initScene();
     QAudioOutput* bgm;
+    Setting* setting;
 
 public slots:
     void newScene();
     void contScene();
     void nextScene();
     void to_menu();
+    void to_setting();
 signals:
     void playScene();
 };

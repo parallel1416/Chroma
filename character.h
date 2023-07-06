@@ -15,7 +15,7 @@ class Character : public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 
 public:
-    Character(int speed, int dir, int x, QString& name);
+    Character(int speed, QString& name);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     QRectF boundingRect() const override;
     bool collidesWithItem(const QGraphicsItem *other, Qt::ItemSelectionMode mode) const override;
@@ -34,7 +34,6 @@ private:
     int hp=100; // 生命值
     int atk=100; // 攻击力
     int speed=0; // 移动速度
-    int dir=0;
     bool interact; // 交互标志
 
     QPixmap pic;
