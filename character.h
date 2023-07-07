@@ -2,6 +2,7 @@
 #define CHARACTER_H
 
 #include <QObject>
+#include <QWidget>
 #include <QGraphicsPixmapItem>
 #include <QPainter>
 #include <QKeyEvent>
@@ -10,13 +11,12 @@
 #include <QGraphicsItemAnimation>
 #include <QTimeLine>
 
-class Character : public QObject, public QGraphicsPixmapItem
+class Character :public QWidget,  public QGraphicsPixmapItem
 {
     Q_OBJECT
 
 public:
     Character(int speed, QString& name);
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     QRectF boundingRect() const override;
     bool collidesWithItem(const QGraphicsItem *other, Qt::ItemSelectionMode mode) const override;
     virtual void keyPressEvent(QKeyEvent *event) override;

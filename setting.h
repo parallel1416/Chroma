@@ -30,6 +30,7 @@ private:
     QSlider *bgmSlider;
     QSlider *toolSlider;
     QSlider *storySlider;
+    globalvar *globalVar;
 };
 
 #endif // SETTING_H

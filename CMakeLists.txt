@@ -29,8 +29,9 @@ set(PROJECT_SOURCES
         map.h map.cpp
         item.h item.cpp
         backpack.cpp backpack.h
-        #bp.h bp.cpp
-        #bp.ui backpack1.qrc
+        battle.cpp battle.h
+        battle_panel.cpp battle_panel.h
+        battle_scene.cpp battle_scene.h
         resources.qrc
         setting.h setting.cpp
         ${TS_FILES}

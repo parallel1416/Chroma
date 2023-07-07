@@ -1,0 +1,14 @@
+{
+    "speaker": "Blue Iceman",
+    "text": "To be or not to be, that is the question.",
+    "options": [
+        {
+            "text": "To be",
+            "nextScene": "1.2.json"
+        },
+        {
+            "text": "Not to be"
+        }
+    ]
+}
+

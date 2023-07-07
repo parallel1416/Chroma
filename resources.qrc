@@ -23,11 +23,11 @@
         <file>resources/image/color4.png</file>
         <file>resources/image/color5.png</file>
         <file>resources/image/color6.png</file>
-        <file>resources/image/hero_l1.png</file>
-        <file>resources/image/hero_r1.png</file>
         <file>resources/image/color7.png</file>
         <file>resources/image/color8.png</file>
         <file>resources/image/color9.png</file>
         <file>resources/image/startmenu_faded.jpg</file>
+        <file>resources/image/hero_l.png</file>
+        <file>resources/image/hero_r.png</file>
     </qresource>
 </RCC>

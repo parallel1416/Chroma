@@ -6,6 +6,9 @@ extern int bgmSound, toolSound, storySound;
 extern int curScene, prevScene;
 extern int colorStatus[5];
 extern QSize btnSize, boxSize, picSize;
+extern int heroHP;
+extern int wizHP;
+extern int last_act;
 
 class globalvar
 {

@@ -63,6 +63,13 @@ Setting::Setting(QGraphicsScene *backScene, QObject *parent) : QGraphicsScene(pa
     storySlider->setValue(storySound); // 设置初始值为50
     storySlider->setGeometry(200, 300, 300, 20); // 设置位置和大小，根据需要修改参数
     addWidget(storySlider);
+
+    globalVar = new globalvar();
+
+    // 在滑动条上连接槽函数，用来调用globalvar类里的修改函数
+    connect(bgmSlider, &QSlider::valueChanged, this, [this](int value){globalVar->setBgmSound(value);});
+    connect(toolSlider, &QSlider::valueChanged, this, [this](int value){globalVar->setToolSound(value);});
+    connect(storySlider, &QSlider::valueChanged, this, [this](int value){globalVar->setStorySound(value);});
 }
 
 void Setting::to_menu(){

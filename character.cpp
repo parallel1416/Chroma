@@ -13,23 +13,12 @@ Character::Character(int speed, QString& name)
     sound = new QSoundEffect();
     sound->setSource(QUrl(":/resources/audio/walk.wav"));
     sound->setVolume(storySound);
-
+    setFocusPolicy(Qt::StrongFocus);
     // QGraphicsItemAnimation对象，指定要动画的对象和时间线，设置时间线的持续时间为0.5秒
     animation = new QGraphicsItemAnimation();
     timeline = new QTimeLine(500);
     animation->setItem(this);
     animation->setTimeLine(timeline);
-}
-
-// 绘图函数
-void Character::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
-{
-    Q_UNUSED(option);
-    Q_UNUSED(widget);
-
-    // 绘制一个简单的圆形代表角色
-    //painter->setBrush(Qt::blue);
-    //painter->drawEllipse(-10, -10, 20, 20);
 }
 
 // 边界函数
@@ -44,8 +33,8 @@ bool Character::collidesWithItem(const QGraphicsItem *other, Qt::ItemSelectionMo
     Q_UNUSED(mode);
 
     // 判断两个圆形的距离是否小于半径之和
-    qreal dx = other->x() - x();
-    qreal dy = other->y() - y();
+    qreal dx = other->QGraphicsItem::x() - QGraphicsItem::x();
+    qreal dy = other->QGraphicsItem::y() - QGraphicsItem::y();
     qreal distance = qSqrt(dx * dx + dy * dy);
 
     return distance < 20;
@@ -59,16 +48,18 @@ void Character::keyPressEvent(QKeyEvent *event)
     switch (event->key()) {
     case Qt::Key_Left:
         // 向左移动，注意边界检查
-        if (x() > 0) {
-            setPos(x()-speed,y());
+        if (QGraphicsItem::x() > 0) {
+            setPos(QGraphicsItem::x()-speed,QGraphicsItem::y());
             sound->play();
+            setPixmap(QPixmap(":/resources/image/hero_l.png"));
         }
         break;
     case Qt::Key_Right:
         // 向右移动，注意边界检查
-        if (x() < 800) {
-            setPos(x()+speed,y());
+        if (QGraphicsItem::x() < 800) {
+            setPos(QGraphicsItem::x()+speed,QGraphicsItem::y());
             sound->play();
+            setPixmap(QPixmap(":/resources/image/hero_r.png"));
         }
         break;
     case Qt::Key_Space:

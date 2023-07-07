@@ -14,8 +14,11 @@ scene::scene(int num, QObject* parent){
     ensureVisible(bkpk);
     backpack=new Backpack();
     connect(backpack, &Backpack::to_game, this, &scene::cont);
-    QString s="hero_r1";
+    QString s="hero_r";
     Character* H=new Character(10,s);
+    H->QGraphicsItem::setFocus();
+    s="BI";
+    Character* BI=new Character(0,s);
     switch (num) {
     case 1:
         map[0]=new Map(":/resources/image/world1.jpg",800,600);
@@ -27,6 +30,8 @@ scene::scene(int num, QObject* parent){
         for (int i = 0; i < 5; ++i) {
             backpack->putItem(i);
         }
+        map[1]->addInteractionPoint(600,"");
+        map[1]->setCharacter(BI,610);
         break;
     default:
         break;

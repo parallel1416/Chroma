@@ -5,6 +5,9 @@ int curScene=0, prevScene=0;
 
 QSize btnSize(120,60), boxSize(50,50), picSize(200,200);
 int colorStatus[5]={0};
+int heroHP = 500;
+int wizHP = 1000;
+int last_act=-1;
 
 globalvar::globalvar()
 {
