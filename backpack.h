@@ -20,9 +20,7 @@ public:
 
     // 放入一个道具，返回是否成功
     bool putItem(int i);
-    int selectNum=-1;
-    // 消耗一个道具，返回是否成功
-    bool consumeItem(Item *item);
+    int selectNum=-1; 
     QLabel* name;
     QLabel* description;
 signals:
@@ -30,7 +28,9 @@ signals:
 public slots:
     // 显示背包中的道具信息，包括数量和描述
     void showItems();
-    void showDes0();
+    // 消耗一个道具，返回是否成功
+    bool consumeItem();
+    void showDes(int i);
 private:
     // 存储空间大小
     int size=10;
@@ -40,8 +40,8 @@ private:
     // 存储道具的列表，按照放入顺序排列
     QList<Item *> items;
 
-    // 存储道具的映射，用于快速查找道具的数量
-    QMap<Item *, int> itemCounts;
+    // 存储道具的映射，用于快速查找道具
+    QMap<int,Item *> colorSlots;
 };
 
 

@@ -21,6 +21,10 @@ public slots:
     void to_menu();
 private:
     QGraphicsTextItem *title; // 标题
+    QGraphicsTextItem *bgmLabel;
+    QGraphicsTextItem *toolLabel;
+    QGraphicsTextItem *storyLabel;
+    QGraphicsPixmapItem *bkgrd;
     mybtn *backButton; // 返回按键
     QGraphicsScene *backScene; // 返回的场景
     QSlider *bgmSlider;

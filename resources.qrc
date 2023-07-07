@@ -28,5 +28,6 @@
         <file>resources/image/color7.png</file>
         <file>resources/image/color8.png</file>
         <file>resources/image/color9.png</file>
+        <file>resources/image/startmenu_faded.jpg</file>
     </qresource>
 </RCC>

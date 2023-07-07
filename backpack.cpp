@@ -5,19 +5,19 @@
 Backpack::Backpack()
 {
     setSceneRect(0, 0, 800, 600);
-    setBackgroundBrush(Qt::white);
+    setBackgroundBrush(Qt::gray);
     for (int i = 0; i < 6; ++i) {
         push[i]=new mybtn("");
         push[i]->setFlat(1);
         push[i]->setFixedSize(picSize);
         addWidget(push[i]);
     }
-    push[0]->move(0,0);
-    push[1]->move(200,0);
-    push[2]->move(0,200);
-    push[3]->move(200,200);
-    push[4]->move(0,400);
-    push[5]->move(200,400);
+    push[0]->move(2,2);
+    push[1]->move(204,2);
+    push[2]->move(2,204);
+    push[3]->move(204,204);
+    push[4]->move(2,406);
+    push[5]->move(204,406);
     back=new mybtn("X");
     back->setFixedSize(boxSize);
     back->move(700,50);
@@ -27,10 +27,20 @@ Backpack::Backpack()
     use->setFixedSize(btnSize);
     use->move(550,450);
     addWidget(use);
+    connect(use,&mybtn::btnClicked, this, &Backpack::consumeItem);
     name=new QLabel();
-    name->move(400,0);
+    name->move(450,100);
+    name->setFrameStyle(QFrame::Panel);
+    name->setFixedSize(QSize(300,50));
+    name->setWordWrap(true);
+    name->setAlignment(Qt::AlignCenter);
+    name->setFont(QFont("Baskerville Old Face",14,QFont::Bold));
     description=new QLabel();
-    description->move(400,200);
+    description->move(450,200);
+    description->setFrameStyle(QFrame::Panel);
+    description->setFixedSize(QSize(300,200));
+    description->setWordWrap(true);
+    description->setAlignment(Qt::AlignTop);
     addWidget(name);
     addWidget(description);
 }
@@ -45,47 +55,52 @@ bool Backpack::putItem(int i)
 
     // 将道具添加到列表中，并更新映射中的数量
     items.append(item);
-    itemCounts[item]++;
 
     return true;
 }
 
 // 消耗一个道具，返回是否成功
-bool Backpack::consumeItem(Item *item)
+bool Backpack::consumeItem()
 {
-
+    Item* item=colorSlots[selectNum];
     if (item == nullptr) {
         return false;
     }
-
     // 如果背包中没有该道具，则返回失败
-    if (!itemCounts.contains(item) || itemCounts[item] == 0) {
+    if (!items.contains(item)) {
         return false;
     }
-
-    // 从列表中移除该道具，并更新映射中的数量
+    name->setText("");
+    description->setText("");
+    // 从列表中移除该道具
     items.removeOne(item);
-    itemCounts[item]--;
-
+    showItems();
     return true;
 }
 
-// 显示背包中的道具信息，包括数量和描述
+// 显示背包中的道具信息和描述
 void Backpack::showItems()
 {
     // 遍历打印出每种道具的名称和描述
     int i=0;
+    colorSlots.clear();
     for (auto it = items.begin(); it != items.end(); ++it) {
         Item *item = *it;
         push[i]->setIcon(item->getIcon());
         push[i]->setIconSize(QSize(120,120));
+        colorSlots[i]=item;
         i++;
+        connect(push[i],&mybtn::btnClicked,this,[this, i]{showDes(i);});
     }
-    connect(push[0],&mybtn::btnClicked,this,&Backpack::showDes0);
+    for(;i<6;i++){
+        push[i]->setIcon(QIcon());
+    }
+
 }
 
-void Backpack::showDes0(){
-    Item* it=items.front();
+void Backpack::showDes(int i){
+    selectNum=i;
+    Item* it=colorSlots[i];
     name->setText(it->getName());
     description->setText(it->getDescription());
 }
