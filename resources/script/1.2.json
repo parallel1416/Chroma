@@ -1,0 +1,10 @@
+{
+    "speaker": "Hero",
+    "text": "Forget about the question, use this to live!",
+    "options": [
+        {
+            "text": "Use Primordial Green",
+            "nextScene": "1.3.json"
+        }
+    ]
+}

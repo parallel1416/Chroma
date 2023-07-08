@@ -21,9 +21,11 @@ public:
 
     // 显示一个内容
     void showContent();
-
+    QLabel *leftCharacter; // 左边角色标签对象
+    QLabel *rightCharacter; // 右边角色标签对象
     // 设置背景图像
     void setPixmap(const QPixmap& m);
+
 
 private slots:
     // 更新场景
@@ -34,8 +36,7 @@ private slots:
 
 private:
     QMessageBox *messageBox; // 消息框对象
-    QLabel *leftCharacter; // 左边角色标签对象
-    QLabel *rightCharacter; // 右边角色标签对象
+
     QSignalMapper *signalMapper; // 信号映射器对象
     QTimer *timer; // 定时器对象
     QString textBuffer; // 文本缓冲区对象

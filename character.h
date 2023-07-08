@@ -29,11 +29,14 @@ public:
     bool getInteract();
     void setInteract(bool b);
     void setSpeed(int s);
-
+    void moveLeft();
+    void moveRight();
+    void stop();
+    int speed=0; // 移动速度
 private:
     int hp=100; // 生命值
     int atk=100; // 攻击力
-    int speed=0; // 移动速度
+
     bool interact; // 交互标志
 
     QPixmap pic;

@@ -42,6 +42,7 @@ void Map::setCharacter(Character *character, int x)
     addItem(character);
     character->setPos(x, height() / 2);
     // 启动定时器，每隔100毫秒检查一次交互或传送
+
     timer->start(100);
 }
 
@@ -55,7 +56,6 @@ void Map::checkInteractionOrTeleport()
 
     // 获取角色的x坐标
     int x = character->QWidget::x();
-
     // 如果有交互点与角色重合，并且角色按下了空格键，则弹出对话框显示对话内容，并停止角色的移动和交互
     if (interactionPoints.contains(x) && character->getInteract()) {
         QMessageBox::information(nullptr, "Interaction", interactionPoints[x]);
@@ -79,5 +79,17 @@ void Map::checkInteractionOrTeleport()
         removeItem(character);
         teleportPoints[x]->setCharacter(character, 100);
         timer->stop();
+    }
+}
+void Map::moveLeft(){
+    if (character->QGraphicsItem::x() > 0) {
+        character->setPos(character->QGraphicsItem::x()-character->speed,character->QGraphicsItem::y());
+        character->setPixmap(QPixmap(":/resources/image/hero_l.png"));
+    }
+}
+void Map::moveRight(){
+    if (character->QGraphicsItem::x() < 800) {
+        character->setPos(character->QGraphicsItem::x()+character->speed,character->QGraphicsItem::y());
+        character->setPixmap(QPixmap(":/resources/image/hero_r.png"));
     }
 }

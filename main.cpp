@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
         }
     }
     mainwindow w(&a);
+    w.setWindowIcon(QIcon(QPixmap(":/resources/image/icon.png")));
     //w.show();
     return a.exec();
 }

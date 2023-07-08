@@ -15,28 +15,30 @@ Setting::Setting(QGraphicsScene *backScene, QObject *parent) : QGraphicsScene(pa
     title = new QGraphicsTextItem("Settings");
     title->setDefaultTextColor(Qt::white);
     title->setFont(QFont("Microsoft YaHei UI", 24));
-    title->setPos(250, 50);
+    title->setPos(350, 50);
     addItem(title);
     bgmLabel = new QGraphicsTextItem("BGM");
     bgmLabel->setDefaultTextColor(Qt::white);
     bgmLabel->setFont(QFont("Microsoft YaHei UI", 12));
-    bgmLabel->setPos(50, 200);
+    bgmLabel->setPos(150, 200);
     addItem(bgmLabel);
     toolLabel = new QGraphicsTextItem("BUTTONS");
     toolLabel->setDefaultTextColor(Qt::white);
     toolLabel->setFont(QFont("Microsoft YaHei UI", 12));
-    toolLabel->setPos(50, 250);
+    toolLabel->setPos(150, 250);
     addItem(toolLabel);
     storyLabel = new QGraphicsTextItem("STORY");
     storyLabel->setDefaultTextColor(Qt::white);
     storyLabel->setFont(QFont("Microsoft YaHei UI", 12));
-    storyLabel->setPos(50, 300);
+    storyLabel->setPos(150, 300);
     addItem(storyLabel);
 
     // 创建返回按键
-    backButton = new mybtn("BACK");
-    backButton->setPos(350, 500);
-    backButton->setFixedSize(btnSize);
+    backButton = new mybtn("");
+    backButton->setPos(50, 50);
+    backButton->setIcon(QIcon(QPixmap(":/resources/image/close.png")));
+    backButton->setIconSize(QSize(35,35));
+    backButton->setFixedSize(boxSize);
     connect(backButton,&mybtn::btnClicked, this, &Setting::to_menu);
     addWidget(backButton);
 
@@ -45,7 +47,7 @@ Setting::Setting(QGraphicsScene *backScene, QObject *parent) : QGraphicsScene(pa
     bgmSlider->setRange(0, 100); // 设置范围为0到100
     bgmSlider->setSingleStep(1); // 设置步长为1
     bgmSlider->setValue(bgmSound); // 设置初始值为50
-    bgmSlider->setGeometry(200, 200, 300, 20); // 设置位置和大小，根据需要修改参数
+    bgmSlider->setGeometry(300, 200, 300, 20); // 设置位置和大小，根据需要修改参数
     addWidget(bgmSlider);
 
     // 创建工具音效音量滑动条
@@ -53,7 +55,7 @@ Setting::Setting(QGraphicsScene *backScene, QObject *parent) : QGraphicsScene(pa
     toolSlider->setRange(0, 100); // 设置范围为0到100
     toolSlider->setSingleStep(1); // 设置步长为1
     toolSlider->setValue(toolSound); // 设置初始值为50
-    toolSlider->setGeometry(200, 250, 300, 20); // 设置位置和大小，根据需要修改参数
+    toolSlider->setGeometry(300, 250, 300, 20); // 设置位置和大小，根据需要修改参数
     addWidget(toolSlider);
 
     // 创建故事音效音量滑动条
@@ -61,7 +63,7 @@ Setting::Setting(QGraphicsScene *backScene, QObject *parent) : QGraphicsScene(pa
     storySlider->setRange(0, 100); // 设置范围为0到100
     storySlider->setSingleStep(1); // 设置步长为1
     storySlider->setValue(storySound); // 设置初始值为50
-    storySlider->setGeometry(200, 300, 300, 20); // 设置位置和大小，根据需要修改参数
+    storySlider->setGeometry(300, 300, 300, 20); // 设置位置和大小，根据需要修改参数
     addWidget(storySlider);
 
     globalVar = new globalvar();

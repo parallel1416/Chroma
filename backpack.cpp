@@ -18,7 +18,9 @@ Backpack::Backpack()
     push[3]->move(204,204);
     push[4]->move(2,406);
     push[5]->move(204,406);
-    back=new mybtn("X");
+    back=new mybtn("");
+    back->setIcon(QIcon(QPixmap(":/resources/image/close.png")));
+    back->setIconSize(QSize(35,35));
     back->setFixedSize(boxSize);
     back->move(700,50);
     addWidget(back);
@@ -29,14 +31,14 @@ Backpack::Backpack()
     addWidget(use);
     connect(use,&mybtn::btnClicked, this, &Backpack::consumeItem);
     name=new QLabel();
-    name->move(450,100);
+    name->move(450,120);
     name->setFrameStyle(QFrame::Panel);
     name->setFixedSize(QSize(300,50));
     name->setWordWrap(true);
     name->setAlignment(Qt::AlignCenter);
     name->setFont(QFont("Baskerville Old Face",14,QFont::Bold));
     description=new QLabel();
-    description->move(450,200);
+    description->move(450,220);
     description->setFrameStyle(QFrame::Panel);
     description->setFixedSize(QSize(300,200));
     description->setWordWrap(true);

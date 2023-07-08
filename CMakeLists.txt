@@ -34,6 +34,7 @@ set(PROJECT_SOURCES
         battle_scene.cpp battle_scene.h
         resources.qrc
         setting.h setting.cpp
+        backpack1.qrc
         ${TS_FILES}
 )
 

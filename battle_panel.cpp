@@ -15,13 +15,13 @@ battle_panel::battle_panel()
 
 }
 
-QMainWindow* battle_panel::initialize(){
-    use_skill=-1;
+QMainWindow* battle_panel::initialize(QProgressBar* pb_w){
+    use_skill=-1;fini_skill=-1;
     QMainWindow* panel=new QMainWindow;
-    panel->resize(800,200);
+    panel->resize(800,120);
     panel->setMenuBar(nullptr);panel->setStatusBar(nullptr);
     QPalette panel_bkg(panel->palette());
-    QImage img = QImage(":/background color/grey change.jpg");
+    QImage img = QImage(":/img/back.png");
     img = img.scaled(panel->size());
     QBrush *pic = new QBrush(img);
     panel_bkg.setBrush(QPalette::Window,*pic);
@@ -32,30 +32,36 @@ QMainWindow* battle_panel::initialize(){
 
     QGridLayout* grid=new QGridLayout(panel);
     grid->setVerticalSpacing(0);
-    grid->setRowMinimumHeight(0,20);
+    grid->setRowMinimumHeight(0,0);
     grid->setRowMinimumHeight(1,30);
     grid->setRowMinimumHeight(2,50);
-    grid->setRowMinimumHeight(3,90);
-    grid->setColumnStretch(6,2);
+    grid->setRowMinimumHeight(3,80);
+    //grid->setColumnStretch(6,2);
 
     const char * route[6];
-    route[0]=":/color pictures/emoji1.png";
-    route[1]=":/color pictures/emoji2.png";
-    route[2]=":/color pictures/emoji3.png";
-    route[3]=":/color pictures/emoji4.png";
-    route[4]=":/color pictures/emoji5.png";
-    route[5]=":/color pictures/emoji6.png";
+    route[0]=":/img/color5.png";
+    route[1]=":/img/color6.png";
+    route[2]=":/img/color7.png";
+    route[3]=":/img/color8.png";
+    route[4]=":/img/color9.png";
+    const char* transparent;transparent=":/img/trans.png";
     //QSoundEffect effect;
     //effect.setSource(QUrl::fromLocalFile(":\resources\audio\click.wav"));
 
-    QPushButton* panel_color[6];
-    QLabel* panel_label[6];
-    for(int c=0;c<6;c++){
+    d[0]="hp+100";
+    d[1]="rebound";
+    d[2]="triple";
+    d[3]="shield";
+    d[4]="HOPE";
+
+
+    for(int c=0;c<5;c++){
         //use_skill[c]=-1;
         if(colorStatus[c]!=0){
         panel_color[c]=new QPushButton;panel_label[c]=new QLabel;
         panel_color[c]->setFixedSize(50,50);panel_label[c]->setFixedSize(50,30);
         panel_label[c]->setText("");panel_label[c]->setAlignment(Qt::AlignHCenter);
+        panel_label[c]->setStyleSheet("color: white;");
 
         QIcon myicon;
         myicon.addFile(route[c]);
@@ -105,7 +111,7 @@ QMainWindow* battle_panel::initialize(){
             panel_label[use_skill]->setText("");
         }
         use_skill=0;
-        panel_label[0]->setText("0");
+        panel_label[0]->setText(d[0]);
         //effect.play();
     }
     );
@@ -125,7 +131,7 @@ QMainWindow* battle_panel::initialize(){
         ");
             panel_label[use_skill]->setText("");
         }
-        panel_label[1]->setText("0");
+        panel_label[1]->setText(d[1]);
         use_skill=1;
         //effect.play();
     }
@@ -147,7 +153,7 @@ QMainWindow* battle_panel::initialize(){
             panel_label[use_skill]->setText("");
         }
         use_skill=2;
-        panel_label[2]->setText("0");
+        panel_label[2]->setText(d[2]);
         //effect.play();
     }
     );
@@ -168,7 +174,7 @@ QMainWindow* battle_panel::initialize(){
             panel_label[use_skill]->setText("");
         }
         use_skill=3;
-        panel_label[3]->setText("0");
+        panel_label[3]->setText(d[3]);
         //effect.play();
     }
     );
@@ -189,28 +195,7 @@ QMainWindow* battle_panel::initialize(){
             panel_label[use_skill]->setText("");
         }
         use_skill=4;
-        panel_label[4]->setText("0");
-        //effect.play();
-    }
-    );
-    if(colorStatus[5]!=0)
-    QObject::connect(panel_color[5],&QPushButton::clicked,widget,[=](void){
-        panel_color[5]->setStyleSheet("QPushButton {\
-        border: 3px solid red;\
-         }\
-        ");
-        if(use_skill!=-1){
-            panel_color[use_skill]->setStyleSheet("QPushButton {\
-        border: 3px solid black;\
-         }\
-                                                  QPushButton:hover{\
-                                                          border: 3px solid red;\
-                                                  }\
-        ");
-            panel_label[use_skill]->setText("");
-        }
-        use_skill=5;
-        panel_label[5]->setText("0");
+        panel_label[4]->setText(d[4]);
         //effect.play();
     }
     );
@@ -218,10 +203,14 @@ QMainWindow* battle_panel::initialize(){
 
     QPushButton* attack=new QPushButton;//replace with mybtn
     attack->setFixedSize(80,80);
-    grid->addWidget(attack,1,6,2,1);
-    QObject::connect(panel_color[5],&QPushButton::clicked,widget,[=](void){
-        return nullptr;
-        //effect.play();
+    QIcon myicon;
+    myicon.addFile(":/img/bb1.png");
+    attack->setIconSize(QSize(75,75));
+    attack->setIcon(myicon);
+    grid->addWidget(attack,1,5,2,1);
+    QObject::connect(attack,&QPushButton::clicked,widget,[=](void){
+        fini_skill=use_skill;
+        battle_action(pb_w);
     }
     );
 
@@ -238,8 +227,88 @@ QMainWindow* battle_panel::initialize(){
     QProgressBar:chunk{\
     background-color:red;\
     }");
-    grid->addWidget(pbh,3,0,1,7,Qt::AlignHCenter);
+    grid->addWidget(pbh,3,0,1,6,Qt::AlignHCenter);
 
     widget->setLayout(grid);
     return panel;
+}
+
+
+void battle_panel::battle_action(QProgressBar* pb_w){
+    if(use_skill!=-1){//hero attack
+    int n=use_skill;
+    if (n == 0&&colorStatus[0]) {
+        heroHP += 100;
+        colorStatus[0] = 0;
+    }
+    else if (n == 1&&colorStatus[1]) {
+        last_act= 1;
+        wizHP -= 100;
+        colorStatus[1] = 0;
+    }
+    else if (n == 2&&colorStatus[2]) {
+        wizHP -=300;
+        colorStatus[2] = 0;
+    }
+    else if (n == 3&&colorStatus[3]) {
+        last_act= 3;
+        colorStatus[3] = 0;
+    }
+    else if (n == 4&&colorStatus[4]) {
+        if (heroHP < 200) {
+            heroHP = 500;
+        }
+        colorStatus[4] = 0;
+    }
+    else {
+        wizHP -= 100;
+    }
+    }
+    else{
+    wizHP-=100;
+    }
+
+    update_hp(pb_w);
+    //delete bs;
+
+    //wiz attack
+    if (last_act==1) {
+    heroHP -= 100;
+    wizHP -= 100;
+    }
+    else if (last_act == 3) {
+    heroHP -= 50;
+    }
+    else {
+    heroHP -= 100;
+    }
+
+    update_hp(pb_w);
+
+    last_act=-1;
+
+}
+
+void battle_panel::update_hp(QProgressBar* pb_w){
+    const char* transparent;transparent=":/img/trans.png";
+    pb_w->setValue(wizHP);
+    pbh->setValue(heroHP);
+    for(int i=0;i<5;i++){
+    if(colorStatus[i]==0){
+        QIcon myicon;
+        myicon.addFile(transparent);
+        panel_color[i]->setIcon(myicon);
+        panel_color[i]->setStyleSheet("QPushButton {\
+        border: 3px solid black;\
+         }\
+                                      QPushButton:hover{\
+                                              border: 3px solid black;\
+                                      }\
+                                      QPushButton:pressed{\
+                                              border: 3px solid black;\
+                                      }\
+        ");
+        d[i]="";
+    }
+    }
 }

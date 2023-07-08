@@ -10,6 +10,7 @@
 #include <QAudioOutput>
 #include <QGraphicsVideoItem>
 #include "./ui_mainwindow.h"
+#include "battle.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class mainwindow; }
 QT_END_NAMESPACE

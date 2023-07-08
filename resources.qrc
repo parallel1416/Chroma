@@ -29,5 +29,14 @@
         <file>resources/image/startmenu_faded.jpg</file>
         <file>resources/image/hero_l.png</file>
         <file>resources/image/hero_r.png</file>
+        <file>resources/image/icon.png</file>
+        <file>resources/image/battle.jpg</file>
+        <file>resources/script/1.1.json</file>
+        <file>resources/image/packpack.png</file>
+        <file>resources/image/pause.png</file>
+        <file>resources/image/close.png</file>
+        <file>resources/script/1.2.json</file>
+        <file>resources/image/BI.png</file>
+        <file>resources/image/hero_f.png</file>
     </qresource>
 </RCC>

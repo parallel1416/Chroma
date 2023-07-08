@@ -12,11 +12,11 @@ Item::Item(int& i)
                                "The cyan color you seem to have brought to this world.",
                                "The blue color you seem to have brought to this world.",
                                "The yellow color you seem to have brought to this world.",
-                               "Gifted to you by a wanderer. It reminds you of grass, trees, and flower fields.",
-                               "Gifted to you by a someone who searches for love. Its hues are like red wine swaying in a tall glass.",
-                               "Gifted to you by a piece of ice. It won't last forever.",
-                               "Gifted to you by two dragons. You now walk with the Dragon's Blessing.",
-                               "Gifted to you by a lion. Hope doesn't do anything. It's just hope."};
+                               "Gifted to you by a wanderer. It reminds you of grass, trees, and flower fields. When used, HP +100",
+                               "Gifted to you by a someone who searches for love. Its hue is like that of a red rose with thorns. When used, the enemy suffers as much damage from its own attack.",
+                               "Gifted to you by a piece of ice. It won't last forever, but it may yet burn. When used, triple the damage of the attack.",
+                               "Gifted to you by two dragons. You now walk with the Dragon's Blessing. When used, you are shielded from the next attack.",
+                               "Gifted to you by a lion. Maybe hope doesn't do anything---it's just hope. But remember, when there is hope, all is yet not lost."};
     this->name = name[i];
     this->description = description[i];
     QPixmap pic=QPixmap(":/resources/image/color"+QString::fromStdString(std::to_string(num))+".png");

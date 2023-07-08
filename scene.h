@@ -2,6 +2,7 @@
 #ifndef SCENE_H
 #define SCENE_H
 #include <QObject>
+#include "dialogbox.h"
 #include "map.h"
 #include "mybtn.h"
 #include "qgraphicsview.h"
@@ -21,9 +22,14 @@ public:
     int sceneNum;
     mybtn* pause;
     mybtn* bkpk;
-    QGraphicsScene* activeMap;
+    Map* activeMap;
     Backpack* backpack;
     Setting* setting;
+
+    mybtn* left; // 左移按钮
+    mybtn* right; // 右移按钮
+    Character* hero;
+    DialogBox* dialog;
 signals:
     void endofScene();
     void to_menu();
@@ -36,6 +42,8 @@ public slots:
     void cont();
     void to_bkpk();
     void to_setting();
+    void moveCharacter();
+    void temp();
 };
 
 #endif // SCENE_H

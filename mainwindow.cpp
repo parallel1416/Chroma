@@ -52,15 +52,18 @@ void mainwindow::initScene(){
     activeScene->show();
 }
 void mainwindow::nextScene(){
-    if (curScene<5) {
+    /*if (curScene<5) {
         curScene++;
         initScene();
     }
     else {
+        battle battle;
         activeScene->hide();
-        view->show();
-        view->setScene(menu);
-    }
+        battle.start();
+    }*/
+    battle battle;
+    activeScene->hide();
+    battle.start();
 
 }
 void mainwindow::contScene(){

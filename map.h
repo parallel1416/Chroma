@@ -26,11 +26,13 @@ public:
 
     // 设置角色，指定初始位置
     void setCharacter(Character *character, int x);
-
-private slots:
+    // 角色
+    Character *character;
+public slots:
     // 检查是否有交互或传送发生
     void checkInteractionOrTeleport();
-
+    void moveLeft();
+    void moveRight();
 private:
     // 地图图片
     QGraphicsPixmapItem *mapImage;
@@ -41,8 +43,7 @@ private:
     // 传送点的位置和目标地图
     QMap<int, Map *> teleportPoints;
 
-    // 角色
-    Character *character;
+
 
     // 定时器，用于周期性检查交互或传送
     QTimer *timer;
